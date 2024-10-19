@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-object-detection
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-object-detection
+  template:
+    metadata:
+      labels:
+        app: flask-object-detection
+    spec:
+      containers:
+      - name: flask-object-detection
+        image: 241533154996.dkr.ecr.us-east-1.amazonaws.com/flask-app:latest  # Updated line
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_ENV
+          value: "production"
